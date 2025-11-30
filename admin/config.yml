@@ -1,0 +1,132 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Uncomment below if using GitHub directly
+# backend:
+#   name: github
+#   repo: your-username/your-repo-name
+#   branch: main
+
+media_folder: "Resources/images"
+public_folder: "/Resources/images"
+
+collections:
+  # Site Settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Company Name", name: "company_name", widget: "string", default: "BEAR GRADE" }
+          - { label: "Phone Number", name: "phone", widget: "string", default: "(616) 307-3802" }
+          - { label: "Email", name: "email", widget: "string", default: "" }
+          - { label: "Address", name: "address", widget: "text", required: false }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+
+  # Home Page
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home_content"
+        label: "Home Page Content"
+        file: "content/pages/home.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Grading & Excavation Services | BEAR GRADE | Pierson & Sand Lake, MI" }
+          - { label: "Meta Description", name: "meta_description", widget: "text", default: "Expert grading & excavation services for your property. Get a free estimate today!" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Main Headline", name: "headline", widget: "string", default: "Achieve Flawless Home Grading Results" }
+              - { label: "Subheadline", name: "subheadline", widget: "string", default: "We Offer Everything From Grading to Excavation Services in and Around Pierson" }
+              - { label: "Button Text", name: "button_text", widget: "string", default: "Reach Out Now" }
+              - { label: "Button Link", name: "button_link", widget: "string", default: "/contact/" }
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Section Title", name: "title", widget: "string", default: "Transform Your Property with Precision" }
+              - { label: "Section Subtitle", name: "subtitle", widget: "string", default: "Make Us Your First Call for Grading Services and More in the Pierson Area" }
+              - { label: "Content", name: "content", widget: "markdown" }
+          - label: "Services Section"
+            name: "services_section"
+            widget: "object"
+            fields:
+              - { label: "Section Title", name: "title", widget: "string", default: "Our Most Popular Services" }
+              - { label: "Section Subtitle", name: "subtitle", widget: "string", default: "BEAR GRADE offers a comprehensive range of services designed to meet your unique needs" }
+              - { label: "Content", name: "content", widget: "markdown" }
+
+  # Services Pages
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Service Name", name: "title", widget: "string" }
+      - { label: "Page Title (SEO)", name: "page_title", widget: "string" }
+      - { label: "Meta Description", name: "meta_description", widget: "text" }
+      - label: "Hero Section"
+        name: "hero"
+        widget: "object"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subheadline", name: "subheadline", widget: "string", required: false }
+      - label: "Content Sections"
+        name: "sections"
+        widget: "list"
+        fields:
+          - { label: "Section Title", name: "title", widget: "string", required: false }
+          - { label: "Content", name: "content", widget: "markdown" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+
+  # Gallery Page
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - name: "gallery_content"
+        label: "Gallery Page"
+        file: "content/pages/gallery.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string", default: "Browse Our Gallery | BEAR GRADE | Pierson & Sand Lake, MI" }
+          - { label: "Meta Description", name: "meta_description", widget: "text" }
+          - { label: "Headline", name: "headline", widget: "string", default: "Gallery" }
+          - label: "Gallery Images"
+            name: "images"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Caption Title", name: "caption_title", widget: "string", required: false }
+              - { label: "Caption Text", name: "caption_text", widget: "text", required: false }
+
+  # Contact Page
+  - name: "contact"
+    label: "Contact Page"
+    files:
+      - name: "contact_content"
+        label: "Contact Page Content"
+        file: "content/pages/contact.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "meta_description", widget: "text" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subheadline", name: "subheadline", widget: "string", required: false }
+          - { label: "Content", name: "content", widget: "markdown", required: false }
+          - label: "Contact Information"
+            name: "contact_info"
+            widget: "object"
+            fields:
+              - { label: "Address", name: "address", widget: "text", required: false }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Hours", name: "hours", widget: "text", required: false }
